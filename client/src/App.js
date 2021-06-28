@@ -19,6 +19,9 @@ import AddExperience from "./components/AddExperience";
 import AddEducation from "./components/AddEducation";
 import Profiles from "./components/Profiles";
 import Profile from "./components/Profile";
+import Account from "./components/Account";
+import Posts from "./components/Posts";
+import Post from "./components/Post";
 import "./App.css";
 
 function App() {
@@ -33,6 +36,9 @@ function App() {
     },
     profile: null,
     profiles: [],
+    post: null,
+    posts: [],
+    likes: [],
     repos: null,
     loading: true
   };
@@ -61,6 +67,21 @@ function App() {
       case "profiles":
         draft.profiles = action.data;
         return;
+      case "post":
+        draft.post = action.data;
+        return;
+      case "posts":
+        draft.posts = action.data;
+        return;
+      case "posted":
+        draft.posts = [action.data, ...draft.posts];
+        return;
+      case "postDeleted":
+        draft.posts = draft.posts.filter(post => post._id !== action.data);
+        return;
+      case "like":
+        draft.posts.map(post => (post._id === action.data.id ? (post.likes = action.data.likes) : post));
+        return;
       case "isloading":
         draft.loading = true;
         return;
@@ -69,6 +90,12 @@ function App() {
         return;
       case "gotrepos":
         draft.repos = action.data;
+        return;
+      case "Comment":
+        draft.post = { ...draft.post, comments: action.data };
+        return;
+      case "commentDeleted":
+        draft.post = { ...draft.post, comments: draft.post.comments.filter(comm => comm._id !== action.data) };
         return;
     }
   }
@@ -101,8 +128,11 @@ function App() {
               <Switch>
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/account" component={Account} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/posts" component={Posts} />
+                <Route exact path="/post/:id" component={Post} />
                 <Route exact path="/profile/:user_id" component={Profile} />
                 <Route exact path="/create-profile" component={CreateProfile} />
                 <Route exact path="/edit-profile" component={EditProfile} />

@@ -33,6 +33,9 @@ export const Navbar = props => {
               <Link to="/profiles">Developers</Link>
             </li>
             <li>
+              <Link to="/posts">Posts</Link>
+            </li>
+            <li>
               <Link to="/dashboard">
                 <i className="fas fa-user" />
                 <span className="hide-sm">Dashboard</span>
@@ -41,6 +44,11 @@ export const Navbar = props => {
             <li>
               <Link onClick={logout} to="#!">
                 <i className="fas fa-sign-out-alt"></i> <span className="hide-sm">LogOut</span>
+              </Link>
+            </li>
+            <li>
+              <Link data-for="profile" data-tip="Profile" to="/account" className="mr-2">
+                <img className="small-header-avatar" src={appState.user.avatar} alt="" />
               </Link>
             </li>
           </ul>
