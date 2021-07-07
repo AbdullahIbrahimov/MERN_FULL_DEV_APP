@@ -1,0 +1,7 @@
+{
+  "MONGOOSE_URI": "mongodb+srv://DevConnector:cIYiA3GA0YMZT7Ob@cluster0.mzzdz.mongodb.net/DevConnector?retryWrites=true&w=majority",
+  "JSONTOKEN": "mymerntokenisnotworking",
+  "PORT": "5000",
+  "GITHUB_CLIENT_ID": "e1fcb4123ee97b0f109b",
+  "GITHUB_SECRET": "cea323dbd4715fc454e0311daead938c999adbc2"
+}
