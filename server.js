@@ -6,7 +6,7 @@ const userRouter = require("./routes/api/users");
 const profileRouter = require("./routes/api/profile");
 const authRouter = require("./routes/api/auth");
 const postRouter = require("./routes/api/posts");
-const PORT = process.env.PORT || 5000;
+
 const app = express();
 
 app.use(express.json());
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(userRouter);
 app.use(authRouter);
 app.use(postRouter);
-app.use(profileRouter);
+app.use(profileRouter); 
 
 // serve static assets in production
 if (process.env.NODE_ENV === "production") {
